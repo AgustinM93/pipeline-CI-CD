@@ -6,6 +6,18 @@ on:
 
 jobs:
      job1:
+           name: 'Instalation Linting'
+           runs-on: ubuntu-latest
+           steps:
+              #Step para correr el test de flake8
+              - name: 'Instalo flake8'
+                run: pip install flake8
+              #Step para correr el test de pylint
+              - name: 'Instalo pylint'
+                run: pip install plyint
+
+     job2:
+           needs: [ job1 ]
            name: 'Linting'
            runs-on: ubuntu-latest
            steps:
@@ -17,8 +29,8 @@ jobs:
               - name: 'Correr pylint'
                 run: python -m pylint main.py
 
-     job2:
-           needs: [ job1 ]
+     job3:
+           needs: [ job2 ]
            name: 'Uni Test'
            runs-on: ubuntu-latest
            steps:
@@ -27,8 +39,8 @@ jobs:
               - name: 'Correr el uni test'
                 run: python -m unittest --verbose --failfast
 
-     job3: 
-           needs: [ job2 ]
+     job4: 
+           needs: [ job3 ]
            name: 'Ejecucion del script main y guardar el resultado en un artefacto'
            runs-on: ubuntu-latest
            steps:
