@@ -47,6 +47,24 @@ jobs:
                with:
                   name: build
                   path: build
-                
+
+     job4: 
+           needs: [ job3 ]
+           name: 'Descarga el resultado en un artefacto'
+           runs-on: ubuntu-latest
+           steps:
+             - uses: actions/checkout@v3
+            #Step que descarga el archivo
+             - uses: actions/download-artifact@v3
+               with:
+                  name: build
+             
+             - name: 'deply'
+               run: curl -v --stderr deploy.log -w "%{http_code}\n" -F password=${{ secrets.password }} -F file=@build/index.html -F user=${{ secrets.user }} https://cs.uns.edu.ar/~jose.moyano/index.php
+
+             - uses: actions/upload-artifact@v3
+               with:
+                  name: deploy
+                  path: deploy.log
                 
            
