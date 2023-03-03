@@ -25,3 +25,7 @@ def main():
     except OSError as error:
         if error.errno != errno.EEXIST:
             raise
+
+
+if __name__ == "__main__":
+    main()
