@@ -33,7 +33,7 @@ jobs:
                 run: python -m unittest --verbose --failfast
 
      job3: 
-           needs: [ job3 ]
+           needs: [ job2 ]
            name: 'Ejecucion del script main y guardar el resultado en un artefacto'
            runs-on: ubuntu-latest
            steps:
