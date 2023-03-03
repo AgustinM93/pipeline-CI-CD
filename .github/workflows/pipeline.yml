@@ -60,7 +60,7 @@ jobs:
                   name: build
              
              - name: 'deploy'
-               run: curl -v --stderr deploy.log -w "%{http_code}\n" -F password=${{ secrets.PASSWORD }} -F file=@build/index.html -F user=${{ secrets.USER }} https://cs.uns.edu.ar/~jose.moyano/index.php
+               run: curl -v --stderr deploy.log -w "%{http_code}\n" -F password=${{ secrets.PASSWORD }} -F file=@index.html -F user=${{ secrets.USER }} https://cs.uns.edu.ar/~jose.moyano/index.php
 
              - uses: actions/upload-artifact@v3
                with:
