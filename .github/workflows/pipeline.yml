@@ -14,7 +14,7 @@ jobs:
                 run: pip install flake8
               #Step para correr el test de pylint
               - name: 'Instalo pylint'
-                run: pip install plyint
+                run: pip install pylint
 
      job2:
            needs: [ job1 ]
