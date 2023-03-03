@@ -9,6 +9,7 @@ jobs:
            name: 'Instalation and run Linting'
            runs-on: ubuntu-latest
            steps:
+              - uses: actions/checkout@v3
               #Step para correr el test de flake8
               - name: 'Instalo flake8'
                 run: pip install flake8
