@@ -1,29 +1,27 @@
+"""El modulo crea una carpeta y adentro de esta carpeta crea un archivo"""
 import errno
+import os
+
+
 def main():
-
-    from os import mkdir
+    """Funcion main, crea una carpeta y un archivo index.html"""
     try:
-        
-        mkdir("build")
-    except OSError as e:
-        if e.errno != errno.EEXIST:
+        os.mkdir("build")
+        with open("build/index.html", "w", encoding="utf8") as folder:
+            folder.write("""
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport"
+            content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+            </head>
+            <body>
+            </body>
+            </html>
+            """)
+    except OSError as error:
+        if error.errno != errno.EEXIST:
             raise
-
-
-    f = open("build/index.html", "w")
-    f.write("""
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-        
-    </body>
-    </html>
-    """)
-    f.close()
-
